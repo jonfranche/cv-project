@@ -1,4 +1,7 @@
 import { Component } from "react";
+import General from "./components/General";
+import School from "./components/School";
+import Work from "./components/Work";
 
 class App extends Component {
   constructor(props) {
@@ -65,29 +68,44 @@ class App extends Component {
       <div>
         <div>
           <form onSubmit={this.generalSubmit}>
+            <label>Name: </label>
             <input name="name" type="text" value={name} onChange={this.generalChange}/>
+            <label>Email: </label>
             <input name="email" type="text" value={email} onChange={this.generalChange}/>
+            <label>Phone Number: </label>
             <input name="phone" type="text" value={phone} onChange={this.generalChange}/>
             <input type="submit" value="Submit"/>
           </form>
         </div>
         <div>
           <form onSubmit={this.schoolSubmit}>
+            <label>School Name: </label>
             <input name="schoolName" type="text" value={schoolName} onChange={this.generalChange}/>
+            <label>Title of Study: </label>
             <input name="titleOfStudy" type="text" value={titleOfStudy} onChange={this.generalChange}/>
+            <label>Dates Attended: </label>
             <input name="schoolDate" type="text" value={schoolDate} onChange={this.generalChange}/>
             <input type="submit" value="Submit"/>
           </form>
         </div>
         <div>
           <form onSubmit={this.experienceSubmit}>
+            <label>Company Name: </label>
             <input name="workName" type="text" value={workName} onChange={this.generalChange}/>
+            <label>Position: </label>
             <input name="workTitle" type="text" value={workTitle} onChange={this.generalChange}/>
+            <label>Tasks: </label>
             <textarea name="tasks" value={tasks} onChange={this.generalChange}></textarea>
+            <label>Date: </label>
             <input name="workDate" type="text" value={workDate} onChange={this.generalChange}/>
             <input type="submit" value="Submit"/>
           </form>
         </div>
+        <General name={name} email={email} phone={phone}></General>
+        <h3>Education</h3>
+        <School name={schoolName} titleOfStudy={titleOfStudy} date={schoolDate}></School>
+        <h3>Experience</h3>
+        <Work name={workName} title={workTitle} tasks={tasks} date={workDate}></Work>
       </div>
     )
   }

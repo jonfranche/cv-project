@@ -1,114 +1,104 @@
-import { Component } from "react";
-import General from "./components/General";
-import School from "./components/School";
-import Work from "./components/Work";
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Form from "./components/FormComponents/Form";
+import Preview from "./components/PreviewComponents/Preview";
+import "./App.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      email: '',
-      phone: '',
-      schools: [],
-      schoolName: '',
-      titleOfStudy: '',
-      schoolDate: '',
-      experiences: [],
-      workName: '',
-      workTitle: '',
-      tasks: '',
-      workDate: ''
-    }
+const generalInfo = {
+  name: "",
+  email: "",
+  phone: "",
+  city: "",
+  objective: "",
+};
 
-    this.generalChange = this.generalChange.bind(this);
-    this.generalSubmit = this.generalSubmit.bind(this);
-    this.schoolSubmit = this.schoolSubmit.bind(this);
-    this.experienceSubmit = this.experienceSubmit.bind(this);
-  }
+const skillsInfo = [];
 
-  generalChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+const schoolInfo = [];
 
-    this.setState({
-      [name]: value
+const expInfo = [];
+
+const App = () => {
+  const [genInfo, setGenInfo] = useState(generalInfo);
+  const [schools, setSchools] = useState(schoolInfo);
+  const [experience, setExperience] = useState(expInfo);
+  const [skills, setSkills] = useState(skillsInfo);
+
+  const saveGeneralInfoHandler = (enteredGeneralInfo) => {
+    setGenInfo(enteredGeneralInfo);
+    console.log(enteredGeneralInfo);
+  };
+
+  const saveSchoolDataHandler = (school) => {
+    console.log(school);
+    setSchools((prevSchools) => {
+      return [...prevSchools, school];
     });
-  }
+    console.log(schools);
+  };
 
-  generalSubmit(event) {
-    alert(`Name: ${this.state.name}
-          Email: ${this.state.email}
-          Phone: ${this.state.phone}`);
-    event.preventDefault();
-  }
+  const saveWorkDataHandler = (work) => {
+    console.log(work);
+    setExperience((prevExperience) => {
+      return [...prevExperience, work];
+    });
+  };
 
-  schoolSubmit(event) {
-    alert(`School Name: ${this.state.schoolName}
-          Study: ${this.state.titleOfStudy}
-          Date: ${this.state.schoolDate}`);
-    event.preventDefault();
-  }
+  const saveSkillsHandler = (skill) => {
+    console.log(skill);
+    setSkills((prevSkills) => {
+      return [...prevSkills, skill];
+    });
+  };
 
-  experienceSubmit(event) {
-    alert(`Company Name: ${this.state.workName}
-          Title: ${this.state.workTitle}
-          Tasks: ${this.state.tasks}
-          Date: ${this.state.workDate}`);
-    event.preventDefault();
-  }
+  const deleteSkillHandler = (removedSkill) => {
+    setSkills((prevSkills) => {
+      return prevSkills.filter((skill) => skill !== removedSkill);
+    });
+  };
 
-  render() {
-    const { name, email, phone, schools,
-      schoolName, schoolDate, titleOfStudy, workName,
-      workDate, workTitle, tasks, experiences } = this.state; 
+  const deleteSchoolHandler = (removedSchool) => {
+    setSchools((prevSchools) => {
+      return prevSchools.filter(
+        (school) => school.schoolName !== removedSchool
+      );
+    });
+  };
 
-    return (
-      <div>
-        <div>
-          <form onSubmit={this.generalSubmit}>
-            <label>Name: </label>
-            <input name="name" type="text" value={name} onChange={this.generalChange}/>
-            <label>Email: </label>
-            <input name="email" type="text" value={email} onChange={this.generalChange}/>
-            <label>Phone Number: </label>
-            <input name="phone" type="text" value={phone} onChange={this.generalChange}/>
-            <input type="submit" value="Submit"/>
-          </form>
-        </div>
-        <div>
-          <form onSubmit={this.schoolSubmit}>
-            <label>School Name: </label>
-            <input name="schoolName" type="text" value={schoolName} onChange={this.generalChange}/>
-            <label>Title of Study: </label>
-            <input name="titleOfStudy" type="text" value={titleOfStudy} onChange={this.generalChange}/>
-            <label>Dates Attended: </label>
-            <input name="schoolDate" type="text" value={schoolDate} onChange={this.generalChange}/>
-            <input type="submit" value="Submit"/>
-          </form>
-        </div>
-        <div>
-          <form onSubmit={this.experienceSubmit}>
-            <label>Company Name: </label>
-            <input name="workName" type="text" value={workName} onChange={this.generalChange}/>
-            <label>Position: </label>
-            <input name="workTitle" type="text" value={workTitle} onChange={this.generalChange}/>
-            <label>Tasks: </label>
-            <textarea name="tasks" value={tasks} onChange={this.generalChange}></textarea>
-            <label>Date: </label>
-            <input name="workDate" type="text" value={workDate} onChange={this.generalChange}/>
-            <input type="submit" value="Submit"/>
-          </form>
-        </div>
-        <General name={name} email={email} phone={phone}></General>
-        <h3>Education</h3>
-        <School name={schoolName} titleOfStudy={titleOfStudy} date={schoolDate}></School>
-        <h3>Experience</h3>
-        <Work name={workName} title={workTitle} tasks={tasks} date={workDate}></Work>
-      </div>
-    )
-  }
-}
+  const deleteExperienceHandler = (removedExperience) => {
+    setExperience((prevExperience) => {
+      return prevExperience.filter(
+        (experience) => experience.startDate !== removedExperience
+      );
+    });
+  };
+
+  return (
+    <div>
+      <Header/>
+    <div className="body-div">
+      <Form
+        generalInfo={genInfo}
+        onSaveGeneralInfo={saveGeneralInfoHandler}
+        onSaveSchoolData={saveSchoolDataHandler}
+        onSaveWorkData={saveWorkDataHandler}
+        onSaveSkills={saveSkillsHandler}
+        onDeleteSkill={deleteSkillHandler}
+        schools={schools}
+        experience={experience}
+        skills={skills}
+      />
+      <Preview
+        generalInfo={genInfo}
+        schools={schools}
+        experience={experience}
+        skills={skills}
+        onDeleteSchool={deleteSchoolHandler}
+        onDeleteExperience={deleteExperienceHandler}
+      />
+    </div>
+    </div>
+  );
+};
 
 export default App;

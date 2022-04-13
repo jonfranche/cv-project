@@ -1,0 +1,11 @@
+.body-div {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+header {
+    background-color: #e67474;
+    color: #fff;
+}

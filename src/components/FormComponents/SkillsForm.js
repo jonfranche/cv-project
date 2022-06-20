@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "./SkillsForm.css";
+
 const SkillsForm = (props) => {
   const [newSkill, setNewSkill] = useState("");
   const skills = props.skills;
@@ -21,7 +23,7 @@ const SkillsForm = (props) => {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form id="skills-form" onSubmit={submitHandler}>
         <label>Skills: </label>
         <input
           type="text"

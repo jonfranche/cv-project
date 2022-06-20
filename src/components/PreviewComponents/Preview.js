@@ -4,6 +4,8 @@ import Experience from "./Experience";
 import General from "./General";
 import Skills from "./Skills";
 
+import "./Preview.css";
+
 const Preview = (props) => {
   const deleteSchoolHandler = (removedSchool) => {
     props.onDeleteSchool(removedSchool);
@@ -14,7 +16,7 @@ const Preview = (props) => {
   };
 
   return (
-    <div>
+    <div className="preview">
       <h3>Preview CV: </h3>
       <div>
         <General generalInfo={props.generalInfo} />

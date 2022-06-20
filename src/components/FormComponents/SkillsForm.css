@@ -1,0 +1,10 @@
+#skills-form {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#skills-form input {
+    max-width: 200px;
+}

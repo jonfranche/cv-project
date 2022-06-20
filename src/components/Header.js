@@ -1,9 +1,11 @@
 import React from "react";
 
+import "./Header.css";
+
 const Header = () => {
   return (
     <header>
-      <span>CV Helper</span>
+      <span className="header-title">CV Helper</span>
     </header>
   );
 };

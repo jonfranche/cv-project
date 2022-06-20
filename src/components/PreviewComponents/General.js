@@ -3,15 +3,15 @@ import React from "react";
 const General = (props) => {
   const generalInfo = props.generalInfo;
   return (
-    <div>
+    <div className="preview-general">
       <h2>{generalInfo.name}</h2>
-      <div>
+      <div className="preview-general__info">
         <span>{generalInfo.city} </span>
         <span>{generalInfo.phone} </span>
         <span>{generalInfo.email}</span>
       </div>
       <div>
-        <span>{generalInfo.objective}</span>
+        <p>{generalInfo.objective}</p>
       </div>
     </div>
   );

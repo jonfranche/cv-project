@@ -1,0 +1,45 @@
+.preview {
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px #ccc;
+  padding: 1rem;
+  max-width:8in;
+  margin: 1rem 1rem;
+}
+
+.preview h2 {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.preview p {
+    text-indent: 3em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.preview button {
+  color: #e67474;
+  border: 2px solid #e67474;
+  border-radius: 3px;
+  background-color: #fff;
+}
+
+.preview-general {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.preview-general__info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.preview-title-dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

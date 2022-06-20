@@ -1,16 +1,21 @@
 import React from "react";
 
+import "./School.css";
+
 const School = (props) => {
   const deleteButtonHandler = (event) => {
     props.onDeleteSchool(event.target.value);
   };
 
   return (
-    <div>
-      <div>
-        <span>{props.schoolName}</span>
-        <span>{props.startDate}</span>
-        <span>{props.endDate}</span>
+    <div className="school-div">
+      <div className="preview-title-dates">
+        <span className="school-title">{props.schoolName}</span>
+        <div>
+          <span>{props.startDate}</span>
+          {" - "}
+          <span>{props.endDate}</span>
+        </div>
       </div>
       <div>
         <span>{props.city}</span>
@@ -18,9 +23,11 @@ const School = (props) => {
       <div>
         <span>{props.degree}</span>
       </div>
-      <button value={props.schoolName} onClick={deleteButtonHandler}>
-        Delete School
-      </button>
+      <div className="school-button-div">
+        <button value={props.schoolName} onClick={deleteButtonHandler}>
+          Delete School
+        </button>
+      </div>
     </div>
   );
 };

@@ -62,7 +62,7 @@ const GeneralForm = (props) => {
         <li>
           <label htmlFor="email">Email: </label>
           <input
-            type="text"
+            type="email"
             name={email}
             value={email}
             onChange={emailChangeHandler}

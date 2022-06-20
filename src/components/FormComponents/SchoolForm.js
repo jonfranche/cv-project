@@ -99,7 +99,7 @@ const SchoolForm = (props) => {
           />
         </li>
       </ul>
-      <button type="submit">Submit</button>
+      <button className="form-button" type="submit">Submit</button>
     </form>
   );
 };
